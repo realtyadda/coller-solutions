@@ -6,8 +6,10 @@ const serviceVisuals = {
   'assets/gateway.png': 'https://www.firstshop.co.za/cdn/shop/products/gtwy-ug65-other-accessories-42675151044772.png?v=1679917269&width=640',
   'assets/service-photo-0.jpg': 'https://www.daikin.co.uk/en_gb/about/case-studies/providing-public-buildings-with-iaq/_jcr_content/image43.coreimg.jpeg/1718367506765/daikin-central-europe-ahu-hq2409.jpeg',
   'assets/service-photo-1.jpg': 'https://images.squarespace-cdn.com/content/v1/695c40f702953468ce4ed979/d9f82f8c-b396-482c-b4eb-340c093f74bb/ChatGPT%2BImage%2BJan%2B24%2C%2B2026%2C%2B10_43_13%2BAM.png',
-  'assets/service-photo-2.jpg': 'https://revtek.nl/assets/barrier-closed.png',
-  'assets/service-photo-3.jpg': 'https://www.revue-ein.com/media/redaction/fee36ef9fdf8741673a6daa0519d75536777c3749e6ea.jpg',
+  'assets/service-photo-2.png': 'assets/parking-management.svg',
+  'assets/service-photo-2.jpg': 'assets/parking-management.svg',
+  'assets/water-pumping.avif': 'assets/scada-water-management.svg',
+  'assets/service-photo-3.jpg': 'assets/scada-water-management.svg',
   'assets/service-photo-4.jpg': 'https://solartodo.com/uploads/citycase_abu_dhabi_scene_smart_streetlight_1776082655269_6f6f58d004.jpg',
   'assets/service-photo-5.jpg': 'https://cdn.tpomag.com/uploads/images/20250418_brittany_reynolds__026.jpg?v=1764769615'
 };
