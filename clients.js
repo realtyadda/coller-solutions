@@ -11,7 +11,7 @@ const serviceVisuals = {
   'assets/water-pumping.avif': 'assets/scada-water-management.svg',
   'assets/service-photo-3.jpg': 'assets/scada-water-management.svg',
   'assets/service-photo-4.jpg': 'https://solartodo.com/uploads/citycase_abu_dhabi_scene_smart_streetlight_1776082655269_6f6f58d004.jpg',
-  'assets/service-photo-5.jpg': 'https://cdn.tpomag.com/uploads/images/20250418_brittany_reynolds__026.jpg?v=1764769615'
+  'assets/service-photo-5.jpg': 'assets/command-centre.jpg'
 };
 
 for (const image of document.querySelectorAll('img[src]')) {
