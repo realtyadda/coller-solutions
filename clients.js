@@ -1,30 +1,3 @@
-/* Service visual repair: use approved solution imagery and force refresh cached assets. */
-const serviceVisuals = {
-  'assets/water-meter.jpg': 'https://cdn.prod.website-files.com/684ab66c43766be3eb25f712/6870e629e0341378e3a37491_685d4a0c359d58565f2e87c1_iDOL_LoRa_total.jpeg',
-  'assets/gas-meter.jpg': 'https://image.made-in-china.com/202f0j00DLmbAOtqAGcR/High-Quality-Iot-Smart-Indsutrial-Lorawan-CNG-Gas-Meter-G10-16-25-40-65.webp',
-  'assets/gateway.png': 'https://www.firstshop.co.za/cdn/shop/products/gtwy-ug65-other-accessories-42675151044772.png?v=1679917269&width=640',
-  'assets/service-photo-0.jpg': 'https://www.daikin.co.uk/en_gb/about/case-studies/providing-public-buildings-with-iaq/_jcr_content/image43.coreimg.jpeg/1718367506765/daikin-central-europe-ahu-hq2409.jpeg',
-  'assets/service-photo-1.jpg': 'https://images.squarespace-cdn.com/content/v1/695c40f702953468ce4ed979/d9f82f8c-b396-482c-b4eb-340c093f74bb/ChatGPT%2BImage%2BJan%2B24%2C%2B2026%2C%2B10_43_13%2BAM.png',
-  'assets/service-photo-2.png': 'assets/parking-management.svg?v=20260917c',
-  'assets/service-photo-2.jpg': 'assets/parking-management.svg?v=20260917c',
-  'assets/water-pumping.avif': 'assets/scada-water-management.svg?v=20260917c',
-  'assets/service-photo-3.jpg': 'assets/scada-water-management.svg?v=20260917c',
-  'assets/service-photo-4.jpg': 'https://solartodo.com/uploads/citycase_abu_dhabi_scene_smart_streetlight_1776082655269_6f6f58d004.jpg',
-  'assets/service-photo-5.jpg': 'assets/command-centre.jpg?v=20260917c'
-};
-
-for (const image of document.querySelectorAll('img[src]')) {
-  const original = image.getAttribute('src');
-  const replacement = serviceVisuals[original];
-  if (replacement) {
-    image.src = replacement;
-    image.removeAttribute('referrerpolicy');
-    if (original === 'assets/service-photo-2.png' || original === 'assets/service-photo-2.jpg') image.alt = 'Smart parking management with ANPR, RFID, boom barrier and access control';
-    if (original === 'assets/water-pumping.avif' || original === 'assets/service-photo-3.jpg') image.alt = 'SCADA water management dashboard showing tank level, pumps, flow, pressure and system status';
-    if (original === 'assets/service-photo-5.jpg') image.alt = 'Integrated command and control centre with monitoring displays and no people shown';
-  }
-}
-
 for (const name of ['client', 'brand']) {
   const control = document.getElementById(`${name}-motion`);
   const marquee = document.getElementById(`${name}-marquee`);

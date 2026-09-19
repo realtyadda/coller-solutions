@@ -1,18 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://collersolutions.com/</loc></url>
-  <url><loc>https://collersolutions.com/solutions.html</loc></url>
-  <url><loc>https://collersolutions.com/prepaid-smart-metering.html</loc></url>
-  <url><loc>https://collersolutions.com/smart-water-metering.html</loc></url>
-  <url><loc>https://collersolutions.com/smart-gas-metering.html</loc></url>
-  <url><loc>https://collersolutions.com/building-management-systems.html</loc></url>
-  <url><loc>https://collersolutions.com/cctv-surveillance.html</loc></url>
-  <url><loc>https://collersolutions.com/ftth-connectivity.html</loc></url>
-  <url><loc>https://collersolutions.com/ev-charging.html</loc></url>
-  <url><loc>https://collersolutions.com/electrical-automation.html</loc></url>
-  <url><loc>https://collersolutions.com/command-control-centres.html</loc></url>
-  <url><loc>https://collersolutions.com/maintenance.html</loc></url>
-  <url><loc>https://collersolutions.com/about.html</loc></url>
-  <url><loc>https://collersolutions.com/clients.html</loc></url>
-  <url><loc>https://collersolutions.com/contact.html</loc></url>
+  <url><loc>https://collersolutions.com/about.html</loc><lastmod>2026-09-19</lastmod></url>
+  <url><loc>https://collersolutions.com/building-management-systems.html</loc><lastmod>2026-09-19</lastmod></url>
+  <url><loc>https://collersolutions.com/cctv-surveillance.html</loc><lastmod>2026-09-19</lastmod></url>
+  <url><loc>https://collersolutions.com/clients.html</loc><lastmod>2026-09-19</lastmod></url>
+  <url><loc>https://collersolutions.com/command-control-centres.html</loc><lastmod>2026-09-19</lastmod></url>
+  <url><loc>https://collersolutions.com/contact.html</loc><lastmod>2026-09-19</lastmod></url>
+  <url><loc>https://collersolutions.com/electrical-automation.html</loc><lastmod>2026-09-19</lastmod></url>
+  <url><loc>https://collersolutions.com/ev-charging.html</loc><lastmod>2026-09-19</lastmod></url>
+  <url><loc>https://collersolutions.com/ftth-connectivity.html</loc><lastmod>2026-09-19</lastmod></url>
+  <url><loc>https://collersolutions.com/</loc><lastmod>2026-09-19</lastmod></url>
+  <url><loc>https://collersolutions.com/maintenance.html</loc><lastmod>2026-09-19</lastmod></url>
+  <url><loc>https://collersolutions.com/parking-management.html</loc><lastmod>2026-09-19</lastmod></url>
+  <url><loc>https://collersolutions.com/prepaid-smart-metering.html</loc><lastmod>2026-09-19</lastmod></url>
+  <url><loc>https://collersolutions.com/scada-water-management.html</loc><lastmod>2026-09-19</lastmod></url>
+  <url><loc>https://collersolutions.com/smart-gas-metering.html</loc><lastmod>2026-09-19</lastmod></url>
+  <url><loc>https://collersolutions.com/smart-street-lighting.html</loc><lastmod>2026-09-19</lastmod></url>
+  <url><loc>https://collersolutions.com/smart-water-metering.html</loc><lastmod>2026-09-19</lastmod></url>
+  <url><loc>https://collersolutions.com/solutions.html</loc><lastmod>2026-09-19</lastmod></url>
 </urlset>
