@@ -18,7 +18,7 @@ function setup(){
  ["ATTENDANCE_ENABLED","CONVEYANCE_ENABLED","PAYROLL_ENABLED"].forEach(k=>setSetting_(k,"TRUE"));
  setSetting_("FIELD_GPS_ENABLED","FALSE");
 }
-function doGet(e){return json_({ok:true,service:"Coller Attendance HRMS",time:new Date().toISOString()});}
+function doGet(){return HtmlService.createTemplateFromFile("Index").evaluate().setTitle("Coller Solutions HRMS").addMetaTag("viewport","width=device-width, initial-scale=1");});}
 function doPost(e){
  try{
   const p=JSON.parse(e.postData.contents||"{}");
@@ -64,3 +64,49 @@ function getSetting_(k){const a=sheet_("Settings").getDataRange().getValues();fo
 function settings_(){const a=sheet_("Settings").getDataRange().getValues();a.shift();return {ok:true,settings:Object.fromEntries(a.filter(r=>r[0]).map(r=>[r[0],r[1]]))};}
 function date_(d){return Utilities.formatDate(d,Session.getScriptTimeZone(),"yyyy-MM-dd");}
 function json_(o){return ContentService.createTextOutput(JSON.stringify(o)).setMimeType(ContentService.MimeType.JSON);}
+
+
+/* HRMS v3 additions */
+function processAttendance(action,employeeId,lat,lng,selfieData){
+ employeeId=String(employeeId||"").trim().toUpperCase(); requireEmployee_(employeeId);
+ if(lat==null||lng==null)throw Error("GPS location is required");
+ if(!selfieData)throw Error("Selfie is required");
+ const url=saveDataFile_(selfieData,employeeId+"_"+String(action).toUpperCase()+"_"+stamp_()+".jpg","Coller HRMS Attendance Selfies");
+ const p={employeeId:employeeId,lat:lat,lng:lng,selfieUrl:url};
+ const r=action==="checkin"?checkin_(p):action==="checkout"?checkout_(p):(()=>{throw Error("Invalid attendance action")})();
+ audit_(employeeId,action.toUpperCase(),"Attendance",r.recordId,"Selfie and GPS attendance");
+ return r;
+}
+function saveExpenseEntry(p){
+ requireEmployee_(p.employeeId); if(getSetting_("EXPENSE_MODULE_ENABLED")!=="TRUE")throw Error("Expense module disabled");
+ const cat=String(p.category||""), km=Number(p.km||0);
+ let rate=0,amount=Number(p.amount||0);
+ if(cat==="Bike / Scooter"){rate=Number(getSetting_("BIKE_RATE")||4);amount=km*rate}
+ if(cat==="Car"){rate=Number(getSetting_("CAR_RATE")||10);amount=km*rate}
+ let receipt="";
+ if(p.receiptData)receipt=saveDataFile_(p.receiptData,p.employeeId+"_EXP_"+stamp_(),"Coller HRMS Expense Receipts");
+ const id=Utilities.getUuid(),d=new Date(p.expenseDate),month=Utilities.formatDate(d,Session.getScriptTimeZone(),"yyyy-MM");
+ sheet_("ExpenseClaims").appendRow([id,p.employeeId,month,p.expenseDate,p.localOutstation||"Local",cat,p.from||"",p.to||"",p.purpose||"",p.vehicleMode||cat,km,rate,Number(amount.toFixed(2)),"","","",receipt,"DRAFT","","",""]);
+ audit_(p.employeeId,"ADD_EXPENSE","ExpenseClaims",id,cat+" "+amount);
+ return {ok:true,claimId:id,claimedAmount:Number(amount.toFixed(2)),status:"DRAFT"};
+}
+function submitMonthlyExpenses(employeeId,month){
+ requireEmployee_(employeeId);const s=sheet_("ExpenseClaims"),a=s.getDataRange().getValues();let n=0,now=new Date();
+ for(let i=1;i<a.length;i++)if(String(a[i][1])===String(employeeId)&&String(a[i][2])===String(month)&&String(a[i][17])==="DRAFT"){s.getRange(i+1,18,1,2).setValues([["SUBMITTED",now]]);n++}
+ if(!n)throw Error("No draft expense entries found");
+ audit_(employeeId,"SUBMIT_MONTH","ExpenseClaims",month,String(n)+" entries");
+ return {ok:true,month:month,entries:n,status:"SUBMITTED"};
+}
+function requestRegularization(employeeId,attendanceDate,requestedCheckOut,reason){
+ requireEmployee_(employeeId);const id=Utilities.getUuid();
+ sheet_("Regularization").appendRow([id,employeeId,attendanceDate,requestedCheckOut,reason||"","PENDING","",new Date(),""]);
+ audit_(employeeId,"REGULARIZATION_REQUEST","Regularization",id,attendanceDate);
+ return {ok:true,requestId:id,status:"PENDING"};
+}
+function saveDataFile_(data,name,folderName){
+ const m=String(data).match(/^data:([^;]+);base64,(.+)$/);if(!m)throw Error("Invalid file data");
+ let fs=DriveApp.getFoldersByName(folderName),f=fs.hasNext()?fs.next():DriveApp.createFolder(folderName);
+ return f.createFile(Utilities.newBlob(Utilities.base64Decode(m[2]),m[1],name)).getUrl();
+}
+function audit_(actor,action,type,id,details){sheet_("AuditLog").appendRow([new Date(),actor,action,type,id,details||""])}
+function stamp_(){return Utilities.formatDate(new Date(),Session.getScriptTimeZone(),"yyyyMMdd_HHmmss")}
