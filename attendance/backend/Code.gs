@@ -18,7 +18,7 @@ function setup(){
  ["ATTENDANCE_ENABLED","CONVEYANCE_ENABLED","PAYROLL_ENABLED"].forEach(k=>setSetting_(k,"TRUE"));
  setSetting_("FIELD_GPS_ENABLED","FALSE");
 }
-function doGet(){return HtmlService.createTemplateFromFile("Index").evaluate().setTitle("Coller Solutions HRMS").addMetaTag("viewport","width=device-width, initial-scale=1");});}
+function doGet(){return HtmlService.createTemplateFromFile("Index").evaluate().setTitle("Coller Solutions HRMS").addMetaTag("viewport","width=device-width, initial-scale=1");}
 function doPost(e){
  try{
   const p=JSON.parse(e.postData.contents||"{}");
